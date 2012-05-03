@@ -54,11 +54,12 @@ object Routing {
   object Results extends SearchRoute {
 
     /* /search/[searchId]/results */
-    lazy val searchMenu = Menu.param[Search](
+    lazy val menu = Menu.param[Search](
       "results", "Results",
-      s => Full(s).map(_.trim).filter(_.length > 0).flatMap{println("setting");CurrentSearch(_)},
-      s => s.id.toString) / "search" / * / "results"
-    lazy val menu = searchMenu >> CalcValue{() => println("getting"); CurrentSearch() } >> TemplateBox(() => Templates(List("results")))
+      s => Full(s).map(_.trim).filter(_.length > 0).flatMap(CurrentSearch(_)),
+      s => s.id.toString) / "search" / * / "results" >>
+    CalcValue(() => Search.menu.currentValue) >>
+    TemplateBox(() => Templates("results" :: Nil))
   }
 
 }
