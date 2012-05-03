@@ -37,3 +37,4 @@ container:stop
 container:stop
 exit
 ~container:start
+container:stop
