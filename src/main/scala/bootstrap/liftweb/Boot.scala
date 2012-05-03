@@ -49,9 +49,9 @@ class Boot {
     // Build SiteMap
     def sitemap = SiteMap(
       Menu.i("Home") / "index",
-      Routing.Search.menu,
-      Routing.Results.menu,
-      Routing.ContactUs.menu,
+      Routing.Search.menu >> LocGroup("Dummy"),
+      Routing.Results.menu >> LocGroup("Dummy"),
+      Routing.ContactUs.menu >> LocGroup("Dummy"),
       
       // more complex because this menu allows anything in the
       // /static path to be visible
